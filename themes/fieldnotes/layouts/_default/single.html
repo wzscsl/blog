@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="article-page">
+  <a class="back-link" href="{{ "" | relURL }}">← 返回所有笔记</a>
+  <header class="article-header"><p class="eyebrow">{{ if eq .Section "posts" }}FIELD NOTES / 学习记录{{ else }}ABOUT / 关于这里{{ end }}</p><h1>{{ .Title }}</h1>{{ if eq .Section "posts" }}<div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time><span>·</span>{{ .ReadingTime }} 分钟阅读</div><div class="tags">{{ range .GetTerms "tags" }}<a href="{{ .RelPermalink }}"># {{ .LinkTitle }}</a>{{ end }}</div>{{ end }}</header>
+  {{ if and (eq .Section "posts") .TableOfContents }}<details class="toc" open><summary>这篇笔记的脉络</summary>{{ .TableOfContents }}</details>{{ end }}
+  <div class="prose">{{ .Content }}</div>
+  {{ with .GetTerms "series" }}<div class="series-box"><span class="eyebrow">继续探索这个系列</span>{{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }} →</a>{{ end }}</div>{{ end }}
+  {{ if eq .Section "posts" }}<div class="article-ending">— 记下来，是理解的开始。 —</div>{{ end }}
+</article>
+{{ end }}

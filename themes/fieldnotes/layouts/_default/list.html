@@ -1,0 +1,3 @@
+{{ define "main" }}
+<section class="collection-page"><p class="eyebrow">KNOWLEDGE INDEX / 知识索引</p><h1>{{ .Title }}</h1><p class="lede">把相关的探索放在一起，让知识慢慢连成线。</p><div class="section-heading"><h2>相关笔记 <span>{{ len .RegularPagesRecursive }}</span></h2><a href="{{ "" | relURL }}">所有笔记 ↗</a></div>{{ range .RegularPagesRecursive.ByDate.Reverse }}{{ partial "post-card.html" . }}{{ end }}</section>
+{{ end }}

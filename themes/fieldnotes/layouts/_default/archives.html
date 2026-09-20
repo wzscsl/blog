@@ -1,0 +1,3 @@
+{{ define "main" }}
+<section class="collection-page"><p class="eyebrow">TIMELINE / 时间的足迹</p><h1>时间归档</h1><p class="lede">每一条记录，都是向前走过的一小步。</p>{{ range (where site.RegularPages "Section" "posts").GroupByDate "2006" }}<div class="archive-year"><h2>{{ .Key }} <small>{{ len .Pages }} 篇</small></h2>{{ range .Pages }}<a class="archive-item" href="{{ .RelPermalink }}"><time>{{ .Date.Format "01.02" }}</time><span>{{ .Title }}</span><span aria-hidden="true">↗</span></a>{{ end }}</div>{{ end }}</section>
+{{ end }}

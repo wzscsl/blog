@@ -1,0 +1,38 @@
+baseURL = 'https://example.org/'
+locale = 'zh-CN'
+defaultContentLanguage = 'zh'
+title = '未完笔记'
+theme = 'fieldnotes'
+timeZone = 'Asia/Shanghai'
+hasCJKLanguage = true
+enableRobotsTXT = false
+disableKinds = ['RSS', 'sitemap']
+summaryLength = 100
+
+[params]
+  description = '从 AI Agent 开发开始，把问题、探索和结论留在这里。'
+  author = 'zxt'
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+  series = 'series'
+
+[permalinks.page]
+  posts = '/:sections/:slug/'
+
+[outputs]
+  home = ['HTML', 'JSON']
+
+[markup.highlight]
+  style = 'github-dark'
+  lineNos = false
+  noClasses = false
+  tabWidth = 4
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+
+[markup.goldmark.renderer]
+  unsafe = false

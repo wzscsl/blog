@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ .Description | default .Summary | default site.Params.description | plainify }}">
+  <meta name="color-scheme" content="light">
+  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ site.Title }}</title>
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ $syntax := resources.Get "css/syntax.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $syntax.RelPermalink }}" integrity="{{ $syntax.Data.Integrity }}">
+  <script src="{{ "js/main.js" | relURL }}" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <a class="brand" href="{{ "" | relURL }}" aria-label="未完笔记首页"><span class="brand-mark">未<span>·</span></span><span>未完笔记<small>FIELD NOTES</small></span></a>
+      <p class="sidebar-intro">思考，动手，然后记下来。<br>一个持续生长的个人知识库。</p>
+      <button class="search-trigger" type="button" data-search-open><span><span aria-hidden="true">⌕</span> 搜索笔记</span><kbd>Ctrl K</kbd></button>
+      <nav aria-label="主导航">
+        <a href="{{ "" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}><span aria-hidden="true">▤</span> 所有笔记 <small>{{ len (where site.RegularPages "Section" "posts") }}</small></a>
+        <a href="{{ "archives/" | relURL }}" {{ if eq .Layout "archives" }}aria-current="page"{{ end }}><span aria-hidden="true">◷</span> 时间归档</a>
+        <a href="{{ "tags/" | relURL }}" {{ if eq .Data.Plural "tags" }}aria-current="page"{{ end }}><span aria-hidden="true">#</span> 标签索引</a>
+        <a href="{{ "about/" | relURL }}" {{ if eq .RelPermalink ("about/" | relURL) }}aria-current="page"{{ end }}><span aria-hidden="true">◉</span> 关于这里</a>
+      </nav>
+      <div class="sidebar-section"><p class="eyebrow">探索方向</p>{{ range site.Taxonomies.categories.ByCount }}<a class="topic-link" href="{{ .Page.RelPermalink }}"><span class="topic-dot"></span>{{ .Page.Title }}<small>{{ .Count }}</small></a>{{ end }}</div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> 持续学习中 <span class="tiny-arrow">↗</span><p>学习沉淀 &gt; 可检索 &gt; 可读性</p></div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar"><span>个人知识库 <span class="slash">/</span> {{ if .IsHome }}所有笔记{{ else }}{{ .Title }}{{ end }}</span><span class="topbar-note">保持好奇，允许未完成 <span aria-hidden="true">✳</span></span></header>
+      <main id="main">{{ block "main" . }}{{ end }}</main>
+      <footer><span>© {{ now.Year }} {{ site.Params.author }} · 未完笔记</span><span>用 Markdown 记录，用 Hugo 构建 <span aria-hidden="true">↗</span></span></footer>
+    </div>
+  </div>
+  <dialog id="search-dialog" aria-labelledby="search-title" data-index="{{ "index.json" | relURL }}">
+    <div class="search-heading"><h2 id="search-title">搜索笔记</h2><button type="button" data-search-close aria-label="关闭搜索">Esc ×</button></div>
+    <label class="sr-only" for="search-input">搜索标题、正文或标签</label>
+    <input id="search-input" type="search" placeholder="搜索问题、代码、标签……" autocomplete="off">
+    <p id="search-status" role="status">输入关键词，找回一个想法。</p>
+    <ul id="search-results"></ul>
+    <p class="search-hint">全文检索 · 支持中文 · 搜索在你的浏览器本地完成</p>
+  </dialog>
+</body>
+</html>

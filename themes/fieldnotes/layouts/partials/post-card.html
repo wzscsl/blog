@@ -1,0 +1,6 @@
+<article class="post-card">
+  <div class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time><span>·</span><span>{{ .ReadingTime }} 分钟阅读</span>{{ with .Params.series }}<span class="series-label">{{ index . 0 }}</span>{{ end }}</div>
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a><span class="card-arrow" aria-hidden="true">↗</span></h2>
+  <p>{{ .Description | default (.Summary | plainify) | truncate 150 }}</p>
+  <div class="tags">{{ range .GetTerms "tags" }}<a href="{{ .RelPermalink }}"># {{ .LinkTitle }}</a>{{ end }}</div>
+</article>

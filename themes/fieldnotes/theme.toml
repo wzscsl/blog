@@ -1,0 +1,5 @@
+name = 'Fieldnotes'
+license = 'MIT'
+description = '面向个人知识库的轻量 Hugo 主题，内置中文本地搜索。'
+[author]
+  name = 'zxt'
