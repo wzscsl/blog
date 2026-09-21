@@ -49,9 +49,9 @@
 
 ### 第 2 步：发布上线（约 1 天）
 
-- [ ] 推到 GitHub
-- [ ] 接入 Cloudflare Pages，配置 push 自动构建发布
-- [ ] 验证全链路：本地改一处 → push → 线上更新
+- [x] 推到 GitHub（wzscsl/blog）
+- [x] 接入 Cloudflare Pages，配置 push 自动构建发布
+- [x] 验证全链路：本地改一处 → push → 线上更新（地址见决策记录）
 
 ### 第 3 步：定型写作工作流（第一周内）
 
@@ -103,3 +103,4 @@
 - **2026-09-20** 确认 Hugo 0.166.0，主题使用本仓库维护的 Fieldnotes（未完笔记）；无外部字体、CDN 或前端包依赖。搜索覆盖标题、全文、标签、分类与系列。
 - **2026-09-20** 图片随文章入库；URL 保留 `/posts/agent/`、`/posts/engineering/` 等方向层级；Windows 安装、预览、新建文章脚本与 Cloudflare 构建脚本已准备。
 - **2026-09-20** 按用户要求，本轮仅完成本地博客和部署配置；未推送 GitHub、未连接 Cloudflare、未发布上线。上线日期待记录。
+- **2026-09-21** 上线：仓库 [wzscsl/blog](https://github.com/wzscsl/blog)，Cloudflare Pages 地址 <https://blog-n9h.pages.dev>，push 即自动构建；`baseURL` 已更新为真实地址，域名暂不购买。

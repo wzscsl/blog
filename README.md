@@ -63,9 +63,9 @@ git commit -m "docs: add my first agent note"
 - 草稿仅出现在 `-D` 预览的索引中，正式构建会排除。
 - 代码复制使用浏览器 Clipboard API，需 localhost 或 HTTPS。
 
-## Cloudflare Pages 部署配置（已准备，尚未上线）
+## Cloudflare Pages 部署（已上线）
 
-先在 GitHub 创建仓库，把本地 `main` 分支推送过去，然后在 Cloudflare 的 **Workers & Pages → Create → Pages → Connect to Git** 连接仓库。
+已连接仓库 [wzscsl/blog](https://github.com/wzscsl/blog)，线上地址 <https://blog-n9h.pages.dev>，push 到 `main` 即自动构建发布。在新环境重建部署时，把仓库连接到 Cloudflare 的 **Workers & Pages → Create → Pages → Connect to Git**，按下方配置填写。
 
 | 设置 | 值 |
 | --- | --- |
@@ -76,17 +76,14 @@ git commit -m "docs: add my first agent note"
 | 输出目录 | `public` |
 | 环境变量（生产与预览） | `HUGO_VERSION=0.166.0` |
 
-构建脚本会使用 Cloudflare 提供的 `CF_PAGES_URL` 设置实际站点地址，避免部署带上示例域名；本地 `hugo.toml` 的 `example.org` 仅为占位符。正式获得稳定地址后，可以把 `baseURL` 更新为该地址。
+构建脚本会使用 Cloudflare 提供的 `CF_PAGES_URL` 设置实际站点地址，避免部署带上占位域名；`hugo.toml` 的 `baseURL` 已更新为 <https://blog-n9h.pages.dev>。
 
 ```powershell
-# 把占位地址替换成你的真实仓库
-git remote add origin https://github.com/YOUR_NAME/YOUR_REPO.git
-git push -u origin main
+# 远程仓库已连接，日常发布只需：
+git push
 ```
 
-接通后每次 push 自动构建。首次上线验证：首页、中文搜索、标签、文章、404；修改一处内容并 push，确认线上更新，再勾选 ROADMAP 的第 2 步。
-
-若暂时没有 Cloudflare 账号，也可以把 `public/` 交给任何静态托管服务。该目录是构建产物，不提交进 Git。
+接通后每次 push 自动构建。若暂时没有 Cloudflare 账号，也可以把 `public/` 交给任何静态托管服务。该目录是构建产物，不提交进 Git。
 
 配置依据：[Cloudflare Hugo 指南](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hugo-site/)、[构建配置](https://developers.cloudflare.com/pages/configuration/build-configuration/)、[Hugo Windows 安装](https://gohugo.io/installation/windows/)。
 

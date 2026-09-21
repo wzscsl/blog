@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://blog-n9h.pages.dev/'
 locale = 'zh-CN'
 defaultContentLanguage = 'zh'
 title = '未完笔记'
